@@ -33,8 +33,11 @@
       <strong>Review:</strong>
       <%= comment.reviews %>
     </p>
+    <p>
+      <strong>submitted by:</strong>
+      <%= comment.user.name%>
+    </p>
     <%end%>
-
 
   <h2>Add a review:</h2>
   <%= form_for([@movie, @movie.comments.build]) do |f|%>
@@ -51,5 +54,7 @@
    <%= link_to "Edit movie",edit_movie_path(@movie) %><br>
    <%=link_to "Delete movie", movie_path(@movie), method: :delete, data: {confirm: "Are you sure?"} %><br>
    <%= link_to "Add new movie",new_movie_path(@movie) %><br>
+
+
 
 
