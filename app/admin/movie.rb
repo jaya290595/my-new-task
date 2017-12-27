@@ -6,10 +6,11 @@ ActiveAdmin.register Movie do
     selectable_column
     id_column
     column :title
-    column :image
-    column :reviews
-    column :description
+    column :photo
     column :rating
+    column :plot
+    column :year
+    column :description
     actions
   end
 

@@ -1,23 +1,38 @@
 class MoviesController < ApplicationController
   before_action :find_movie, only: [:show,:edit,:update,:destroy]
-  before_action :get_rating,only:[:index,:detail]
-  before_action :get_view,only:[:index,:detail]
+  
 
   def index
-  
+  @movies = Movie.all
   end
 
+
+  def create
+            
+           if params[:view]='automatic'
+               
+                @mv = OtherServiceCall.new.api_call(params[:movie][:title])
+                if @mv == true
+                  redirect_to "192.168.3.3/admin/movies",notice: "movie Successfully Saved"
+                else
+                      redirect_to new_admin_movie_path(view: params[:view]),alert: "Movie Not Found Please verify it."
+                end
+          else
+              @movie = Movie.new(movie_params)
+              if @movie.save
+                   redirect_to "192.168.3.3/admin/movies",notice: "movie Successfully Saved"
+         else
+          redirect_to new_admin_movie_path
+              
+              end
+          end
+      end
    def new
   	@movie= Movie.new
 
   end
 
-  def create
-    @movie = Movie.new(movie_params)
-  
-    @movie.save
-    redirect_to @movie 
-  end
+
   
   def show
   end
@@ -56,7 +71,7 @@ end
  private
 
 def movie_params
-	params.require(:movie).permit(:title,:text,:photo,:description,:rating,:review)
+	params.require(:movie).permit(:title,:text,:photo,:description,:rating,:plot,:year)
 end
 
 def find_movie

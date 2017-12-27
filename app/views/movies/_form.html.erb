@@ -15,11 +15,16 @@
     <%= f.label :title %><br>
     <%= f.text_field :title %> <br>
   </p>
+ <% if params[:view]="automatic" %>
  
-  <p>
-    <%= f.label :Cast%><br>
-    <%= f.text_area :text %><br>
-  </p>
+ <%= hidden_field_tag 'view', view %>
+
+ <% else %>
+
+ <p>
+   <%= f.label :text %><br>
+   <%= f.text_field :text%><br>
+ </p>
 
   
   <p>
@@ -28,12 +33,17 @@
   </p>
 
   <p>
-    <%= f.label :rating %><br>
-    <%= f.text_field :rating%><br>
+    <%= f.label :year %><br>
+    <%= f.text_field :year%><br>
   </p>
   <p>
-    <%= f.label :review %><br>
-    <%= f.text_field :review%><br>
+    <%= f.label :plot %><br>
+    <%= f.text_field :plot%><br>
+  </p>
+
+  <p>
+    <%= f.label :rating %><br>
+    <%= f.text_field :rating%><br>
   </p>
 
   <p>
@@ -41,6 +51,7 @@
   <%= f.file_field :photo %><br>
   </p>
 
+<%end%>
  <br>
 
   <p>
