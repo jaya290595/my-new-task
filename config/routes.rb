@@ -5,7 +5,7 @@ match '/admin/movies' => 'movies#create', via: :post
   devise_for :users
 	
 root 'movies#index'
-	resources :movies do
+	resources :movies,:except => [:new, :delete,:edit,:update] do
 	resources :comments
 end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

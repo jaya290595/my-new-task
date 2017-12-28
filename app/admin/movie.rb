@@ -1,5 +1,9 @@
 ActiveAdmin.register Movie do
-  permit_params :title,:image,:description,:rating,:reviews
+  permit_params :title,:image,:plot,:rating,:cast,:genre,:view
+
+
+decorate_with MovieDecorator
+
 
 
   index do
@@ -10,11 +14,13 @@ ActiveAdmin.register Movie do
     column :rating
     column :plot
     column :year
-    column :description
+    column :cast
+    column :genre
     actions
   end
 
   filter :title
+  filter :genre
 
   action_item :new_movie,only: :index do
     link_to "Automatically Movie Upload", "#{ Rails.application.secrets.url}/admin/movies/new?view=automatic"

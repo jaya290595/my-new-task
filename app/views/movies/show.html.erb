@@ -5,17 +5,17 @@
     
    <p>
      <strong>Cast:</strong>
-     <%= @movie.text %>
+     <%= @movie.cast %>
    </p>
 
     
    <p>
-     <strong>description:</strong>
-     <%= @movie.description %>
+     <strong>Genre:</strong>
+     <%= @movie.genre %>
    </p>  
    <p>
-     <strong>rating:</strong>
-     <%= @movie.rating %>
+     <strong>plot:</strong>
+     <%= @movie.plot %>
    </p>  
    <p>
      <strong>year:</strong>
@@ -23,8 +23,8 @@
    </p>
     
    <p>
-     <strong>plot:</strong>
-     <%= @movie.plot %>
+     <strong>rating:</strong>
+     <%= @movie.rating %>
    </p>
 
    <p>
@@ -56,9 +56,9 @@
           <%end%>
    <br>
 
-   <%= link_to "Edit movie",edit_movie_path(@movie) %><br>
-   <%=link_to "Delete movie", movie_path(@movie), method: :delete, data: {confirm: "Are you sure?"} %><br>
-   <%= link_to "Add new movie",new_movie_path(@movie) %><br>
+   <%= link_to "Edit movie",edit_admin_movie_path(@movie) %><br>
+   <%=link_to "Delete movie", admin_movie_path(@movie), method: :delete, data: {confirm: "Are you sure?"} %><br>
+   <%= link_to "Add new movie",new_admin_movie_path(@movie) %><br>
 
 
 
