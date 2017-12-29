@@ -23,6 +23,7 @@ gem 'jquery-rails'
 gem 'activeadmin'
 gem 'mysql2', '~> 0.4.4'
 gem 'draper'
+gem "figaro"
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

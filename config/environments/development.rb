@@ -27,30 +27,43 @@ Rails.application.configure do
   end
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
-  config.action_mailer.perform_caching = false
+  config.action_mailer.perform_caching = true
 
   # Print deprecation notices to the Rails logger.
-  config.active_support.deprecation = :log
+  config.active_support.deprecation = :smtp
 
-  # Raise an error on page load if there are pending migrations.
-  config.active_record.migration_error = :page_load
+   config.action_mailer.smtp_settings = {
+        # enable_starttls_auto: true,
+        address: 'smtp.gmail.com',
+        port: 587,
+        domain: 'gmail.com',
+        authentication: 'plain',
+        user_name: Rails.application.secrets.email,
+        password: Rails.application.secrets.password
+      }
+    config.action_mailer.perform_caching = false
 
-  # Debug mode disables concatenation and preprocessing of assets.
-  # This option may cause significant delays in view rendering with a large
-  # number of complex assets.
-  config.assets.debug = true
+    # Print deprecation notices to the Rails logger.
+    config.active_support.deprecation = :log
 
-  # Suppress logger output for asset requests.
-  config.assets.quiet = true
-  config.action_mailer.default_url_options = { host: '192.168.3.3', port: 3000 }
+    # Raise an error on page load if there are pending migrations.
+    config.active_record.migration_error = :page_load
 
+    # Debug mode disables concatenation and preprocessing of assets.
+    # This option may cause significant delays in view rendering with a large
+    # number of complex assets.
+    config.assets.debug = true
 
-  # Raises error for missing translations
-  # config.action_view.raise_on_missing_translations = true
+    # Suppress logger output for asset requests.
+    config.assets.quiet = true
 
-  # Use an evented file watcher to asynchronously detect changes in source code,
-  # routes, locales, etc. This feature depends on the listen gem.
-  config.file_watcher = ActiveSupport::EventedFileUpdateChecker
-end
+    # Raises error for missing translations
+    # config.action_view.raise_on_missing_translations = true
+
+    # Use an evented file watcher to asynchronously detect changes in source code,
+    # routes, locales, etc. This feature depends on the listen gem.
+    config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+    config.action_mailer.default_url_options = { host: '192.168.3.3', port: 3000 }
+  end

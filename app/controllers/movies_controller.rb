@@ -6,32 +6,34 @@ class MoviesController < ApplicationController
   
 
   def index
-  @movies = Movie.all.order('created_at desc').limit(3)
+     if params[:search]
+     @movies= Movie.search(params[:search])
+    @movies_rating = Movie.search(params[:search])
+     else
+      @movies = Movie.all.order('created_at desc').limit(3)
       @movies_view = @movies_view.limit(4)
       @movies_rating = @movies_rating.limit(4)
   end
+end
 
 
-  def create
-            
-           if params[:view]='automatic'
-               
-                @mv = OtherServiceCall.new.api_call(params[:movie][:title])
-                if @mv == true
-                  redirect_to "http://192.168.3.3:3000/admin/movies",notice: "movie Successfully Saved"
-                else
-                  redirect_to new_admin_movie_path(view: params[:view]),alert: "Movie Not Found Please verify it."
-                end
-            else
-              
-               @movie = Movie.new(movie_params)
-                if @movie.save
-                     redirect_to "http://192.168.3.3:3000/admin/movies",notice: "movie Successfully Saved"
-               else
-                redirect_to new_admin_movie_path
-                end
-            end
- end
+def create
+  if params[:view]='automatic'
+    @mv = OtherServiceCall.new.api_call(params[:movie][:title])
+    if @mv == true
+      redirect_to "http://192.168.3.3:3000/admin/movies",notice: "movie Successfully Saved"
+    else
+      redirect_to new_admin_movie_path(view: params[:view]),alert: "Movie Not Found Please verify it."
+    end
+  else
+    @movie = Movie.new(movie_params)
+    if @movie.save
+      redirect_to "http://192.168.3.3:3000/admin/movies",notice: "movie Successfully Saved"
+    else
+      redirect_to new_admin_movie_path
+    end
+  end
+end
      
 
     def new
@@ -66,19 +68,17 @@ end
   end
 
 
-  def search_logic
-      @view = params[:view]
-       search = params[:search]
-       if search
-         capital_search = search.capitalize
-         downcase_search = search.downcase
-         upcase_search = search.upcase
-         title_search = search.titleize
-         @movies_rating = Movie.where("title like? OR title like? OR title like? OR title like?","#{capital_search}%","#{downcase_search}%","#{upcase_search}%","#{title_search}%").order('rating ASC')
-      else
-      end
-
-    end
+def search_logic
+  @view = params[:view]
+  search = params[:search]
+  if search
+    capital_search = search.capitalize
+    downcase_search = search.downcase
+    upcase_search = search.upcase
+    title_search = search.titleize
+    @movies_rating = Movie.where("title like? OR title like? OR title like? OR title like?","#{capital_search}%","#{downcase_search}%","#{upcase_search}%","#{title_search}%").order('rating ASC')
+  end
+end
 
  private
 
