@@ -1,0 +1,24 @@
+<footer id="myFooter">
+    <div class="container" style="background: black">
+        <div class="row">
+            <div class="col-sm-4">
+                <h2 class="logo"><a href="<%= root_path%>"> Movie Store </a></h2>
+            </div>
+            <div class="col-sm-4">
+                <h5></h5>
+                <ul>
+                    <li><a href="<%= root_path%>">Home</a></li>
+                    <% if user_signed_in? %>
+                    <li><%= link_to "SignOut",destroy_user_session_path,method: :delete%></li>
+                    <%else%>
+                    <li><a href="<%= new_user_registration_path%>">Sign up</a></li>
+                    <%end%>
+                    <li><a href="#">Downloads</a></li>
+                </ul>
+            </div>
+                <br><button type="button" class="btn btn-default">Contact us</button>
+            </div>
+        </div>
+    </div>
+</footer>
+ 

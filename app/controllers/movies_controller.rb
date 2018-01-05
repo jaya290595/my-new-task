@@ -1,6 +1,6 @@
 class MoviesController < ApplicationController
   before_action :find_movie, only: [:show,:edit,:update,:destroy]
-  before_action :set_id,except:[:index,:detail,:create]
+  before_action :set_id, except: [:index,:detail,:create,:new]
   before_action :get_rating,only:[:index,:detail]
   before_action :get_view,only:[:index,:detail]
   
@@ -10,7 +10,8 @@ class MoviesController < ApplicationController
      @movies= Movie.search(params[:search])
     @movies_rating = Movie.search(params[:search])
      else
-      @movies = Movie.all.order('created_at desc').limit(3)
+      @movies = Movie.all.order('created_at desc').limit(3) 
+
       @movies_view = @movies_view.limit(4)
       @movies_rating = @movies_rating.limit(4)
   end
@@ -20,6 +21,7 @@ end
 def create
   if params[:view]='automatic'
     @mv = OtherServiceCall.new.api_call(params[:movie][:title])
+
     if @mv == true
       redirect_to "http://192.168.3.3:3000/admin/movies",notice: "movie Successfully Saved"
     else
@@ -37,7 +39,7 @@ end
      
 
     def new
-    	@movie= Movie.new
+    #	@movie= Movie.new
 
     end
 
@@ -48,6 +50,7 @@ end
   
   def show
     View.create(movie_id: @movies.id)
+    @genre_same= Movie.where(:genre=> @movie.genre)
         @movies_list = Movie.where(genre: @movies.genre).order('rating Desc')
   end
 

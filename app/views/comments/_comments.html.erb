@@ -1,9 +1,15 @@
-   <p>
-      <strong>Review:</strong>
-      <%= comment.reviews %>
+
+   <p class="fontstyle">
+     <strong>Comment:</strong>
+     <%= comment.reviews %>
+   </p>
+
+    <p>
+       <strong> Added by:</strong>
+       <%= comment.user.name %>
     </p>
-    
    <p>
-      <strong>submitted by:</strong>
-      <%= comment.user.name%>
-    </p>
+     <a class= "button" <%= link_to 'Destroy Comment', [comment.movie, comment],
+                  method: :delete,
+                  data: { confirm: 'Are you sure?' } %></a>
+

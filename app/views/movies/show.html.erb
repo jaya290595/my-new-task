@@ -1,65 +1,128 @@
-   <p>
-     <strong>Title:</strong>
-     <%= @movie.title %>
-   </p>
-    
-   <p>
-     <strong>Cast:</strong>
-     <%= @movie.cast %>
-   </p>
+   <div class="panel panel-default">
+     <div class="panel-body">
 
-    
-   <p>
-     <strong>Genre:</strong>
-     <%= @movie.genre %>
-   </p>  
-   <p>
-     <strong>plot:</strong>
-     <%= @movie.plot %>
-   </p>  
-   <p>
-     <strong>year:</strong>
-     <%= @movie.year%>
-   </p>
-    
-   <p>
-     <strong>rating:</strong>
-     <%= @movie.rating %>
-   </p>
+       <div class="container-fluid" style="background: lightblue">
+        <div class="row">
+          <div class="col-md-4">
+              <img src="<%=@movie.photo_url%>" style="height:500px; width:100%"/>
+          </div>
+          <div class="col-md-8">
+            <dl>
+              <dt class= "fontstyle">
 
-   <p>
-     <strong>images:</strong>
-     <img src="<%= @movie.photo_url%>">
-  </p>
+                Title:
+              </dt>
+              <dd class"fonttexts">
 
-  <h2>Comments</h2>
-  <% @movie.comments.each do |comment| %>
-    <p>
-      <strong>Review:</strong>
-      <%= comment.reviews %>
-    </p>
-    <p>
-      <strong>submitted by:</strong>
-      <%= comment.user.name%>
-    </p>
-    <%end%>
+                 <%= @movie.title %>
+               </font>
+              </dd>
+              <dt class= "fontstyle">
+                 Cast:
+              </dt>
+              <dd class"fonttexts">
+                <%= @movie.cast %>
+              </dd>
+              <dt class= "fontstyle">
+                Genre:
+              </dt>
+              <dd class"fonttexts">
+                <%= @movie.genre %>
+              </dd>
+              <dt class= "fontstyle">
+                 Plot:
+              </dt>
+              <dd class"fonttexts">
+                <%= @movie.plot %>
+              </dd>
+               <dt class= "fontstyle">
+                 Year:
+              </dt>
+              <dd class"fonttexts">
+                   <%= @movie.year%>
+              </dd>
+               <dt class= "fontstyle">
+                  Rating:
+               </dt>
+               <dd class"fonttexts">
+                 <%= @movie.rating%>
+               </dd>
 
-  <h2>Add a review:</h2>
-  <%= form_for([@movie, @movie.comments.build]) do |f|%>
-    <p>
-      <%= f.label :review%><br>
-      <%= f.text_field :reviews %>
-    </p>
-    <p>
-        <%= f.submit %>
-      </p>
-          <%end%>
-   <br>
+            </dl>
+          </div>
+        </div>
 
-   <%= link_to "Edit movie",edit_admin_movie_path(@movie) %><br>
-   <%=link_to "Delete movie", admin_movie_path(@movie), method: :delete, data: {confirm: "Are you sure?"} %><br>
-   <%= link_to "Add new movie",new_admin_movie_path(@movie) %><br>
+        <div class="col-md-12" style="padding-left: 0px;
+    padding-right: 0px;"> 
+   
 
+                    <div class="panel panel-default">
+                                <div class="panel-heading" style="background: silver">
+                                    <h3 class="panel-title">
+                                        <h4> <strong>Top 10 list of movies</strong></h4>
+                                    </h3>
+                                </div>
+                            <div class="panel-body table-responsive" style="background: silver">
+                                  <table class="table ">
+                                            <thead>
+                                              <tr>
+                                                <th>
+                                                  <strong> Movie Id</strong>
+                                                </th>
+                                                <th>
+                                                  <strong>Name</strong>
+                                                </th>
+                                                <th>
+                                                  <strong>Genre</strong>
+                                                </th>
+                                              </tr>
+                                            </thead>
+                                            <% @genre_same.each do |genre|%>
+                                                <tbody  data-spy="scroll"> 
+                                                    <tr>
+                                                        <td><%=genre.id%></td>
+                                                    
+                                                    
+                                                    
+                                                        <td><%=link_to genre.title, movie_path(genre) %></td>
+                                                    
+                                                    
+                                                        <td><%=genre.genre%></td>
+                                                    </tr>
+                                                </tbody>
+                                            <%end%>                            
+                                        </table>
+                                </div>
+                        </div>
+                </div>
 
+        <div class="row">
+          <div class="col-md-6">
+            <div class="panel panel-default" style="background: lightyellow">
+              <div class="panel-heading" style="background: lavender">
+                <h3 class="panel-title" style="font-size: bold;">
+                 <strong>Comments</strong>
+                </h3>
+              </div>
 
+               <%  @movie.comments.limit(3).each do |c| %>
+                <div class="panel-body">
+                  <%= render partial: "comments/comments",locals:{comment: c }%>
+                </div>
+               <%end%>
+              <div class="panel-footer" style="background: lavender">
+                 <h2>Add a comment:</h2>
+                 <%= render partial: 'comments/form' %>
+
+               </div>
+            </div>
+          </div>
+  
+        </div>
+       </div>
+
+         </div>
+       </div>
+     </div>
+   <%= render partial: 'shared/footer' %>
 
