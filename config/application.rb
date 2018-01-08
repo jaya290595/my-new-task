@@ -1,6 +1,4 @@
 
-require 'carrierwave'
-require 'carrierwave/orm/activerecord'
 
 require_relative 'boot'
 
