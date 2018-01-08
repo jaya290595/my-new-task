@@ -7,16 +7,15 @@ end
 
 gem 'font-awesome-rails'
 gem 'rails', '~> 5.1.4'
-
 gem 'puma', '~> 3.7'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
 gem 'devise'
-gem 'carrierwave','~> 0.11.2'
+
 gem 'mini_magick'
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.6'
 gem 'jquery-rails'
@@ -46,3 +45,4 @@ group :production do
 
 
 end
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
