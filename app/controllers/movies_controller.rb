@@ -12,8 +12,8 @@ class MoviesController < ApplicationController
      else
       @movies = Movie.all.order('created_at desc').limit(3) 
 
-      @movies_view = @movies_view.limit(3)
-      @movies_rating = @movies_rating.limit(3)
+      @movies_view = @movies_view.limit(4)
+      @movies_rating = @movies_rating.limit(4)
   end
 end
 
