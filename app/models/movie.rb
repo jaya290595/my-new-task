@@ -8,9 +8,9 @@ has_many :users, through: :comments
   validates :rating, numericality: { less_than_or_equal_to: 10 }
 
 
-def self.search(search)
+  def self.search(search)
   where("title LIKE ?", "%#{search}%") 
-end
+  end
 
 
 end

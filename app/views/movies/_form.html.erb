@@ -4,11 +4,11 @@
     <div id="error_explanation">
       <h2><%= pluralize(@movie.errors.count, "error") %> prohibited this movie from being saved:</h2>
  
-      <ul>
-      <% @movie.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+        <ul>
+        <% @movie.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
     </div>
   <% end %>
   <p>
@@ -25,28 +25,29 @@
           <%= f.text_field :genre%><br>
         </p>
     
-          <p>
-            <%= f.label :year %><br>
-            <%= f.text_field :year%><br>
-          </p>
-          <p>
-            <%= f.label :plot %><br>
-            <%= f.text_field :plot%><br>
-          </p>
+        <p>
+          <%= f.label :year %><br>
+          <%= f.text_field :year%><br>
+        </p>
 
-          <p>
-            <%= f.label :rating %><br>
-            <%= f.text_field :rating%><br>
-          </p>
+        <p>
+          <%= f.label :plot %><br>
+          <%= f.text_field :plot%><br>
+        </p>
 
-          <p>
+        <p>
+          <%= f.label :rating %><br>
+          <%= f.text_field :rating%><br>
+        </p>
+
+        <p>
           <%= f.label :images %><br>
           <%= f.file_field :photo %><br>
-          </p>
-      <%end%>
- <br>
+        </p>
+    <%end%>
+  <br>
 
-      <p>
-        <%= f.submit %>
-      </p>
+        <p>
+          <%= f.submit %>
+        </p>
 <% end %>

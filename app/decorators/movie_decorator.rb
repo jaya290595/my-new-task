@@ -1,18 +1,11 @@
 class MovieDecorator < Draper::Decorator
-  delegate_all
-  
-
-
-    def photo
-    	
-
-      if model.photo_url.present?
+ delegate_all
+  def photo
+    if model.photo_url.present?
         h.image_tag(model.photo_url, width: "50px",height: "50px")
       else
-      end
     end
- 
-
+  end
   # Define presentation-specific methods here. Helpers are accessed through
   # `helpers` (aka `h`). You can override attributes, for example:
   #
